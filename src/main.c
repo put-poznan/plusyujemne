@@ -7,73 +7,81 @@
 
 #include <stdio.h>
 #include "LinkedList.h"
+#include "input.h"
+#include "init.h"
+#include "util.h"
 
-void init(ALLEGRO_DISPLAY **disp, int xres, int yres)
+
+struct GameEntity bolek;
+ALLEGRO_FONT *arial;
+
+void DoLogic(void)
 {
-	al_init();
-	al_install_keyboard();
-	al_init_font_addon();
-	al_init_primitives_addon();
-	al_init_image_addon();
-	al_install_mouse();
-
-	*disp = al_create_display(xres, yres);
+	if (IsKeyPressed(ALLEGRO_KEY_LEFT))
+		bolek.Pos.x -= 1;
+	if (IsKeyPressed(ALLEGRO_KEY_RIGHT))
+		bolek.Pos.x += 1;
+	if (IsKeyPressed(ALLEGRO_KEY_UP))
+		bolek.Pos.y -= 1;
+	if (IsKeyPressed(ALLEGRO_KEY_DOWN))
+		bolek.Pos.y += 1;
 }
 
+void Render(void)
+{
+
+
+
+	RenderGE(bolek);
+
+
+	al_draw_text(arial, al_map_rgb(255, 255, 255), 200, 200, 0, "#walesacontent");
+}
 
 int main(int argc, char ** argv)
 {
-
+	argc;
+	argv;
 	ALLEGRO_DISPLAY *display = NULL;
-	ALLEGRO_EVENT_QUEUE *event_queue = NULL;
 
 	init(&display, 800, 600);
-	ALLEGRO_FONT *arial = al_create_builtin_font();
 
-	ALLEGRO_BITMAP *bolek = al_load_bitmap("gfx/bolek.png");
+	arial = al_create_builtin_font();
+	ALLEGRO_BITMAP *bolekbmp = al_load_bitmap("gfx/bolek.png");
+
+	bolek.bitmap = bolekbmp;
+	bolek.Pos.x = 100;
+	bolek.Pos.y = 100;
 
 
-	ALLEGRO_KEYBOARD_STATE KeyboardState;
-	ALLEGRO_MOUSE_STATE MouseState;
 
 	double dt = 0.0;
 	double lastUpdateTime = al_current_time();
 	double accumulator = 0;
 	double TIME_STEP = 1. / 30;
 
-	double x = 0, y = 0;
 
-	while (1)
+
+	UpdateInput();
+	int isRunning = 1;
+	while (isRunning)
 	{
 		dt = al_current_time() - lastUpdateTime;
 		lastUpdateTime += dt;
 		accumulator += dt;
 
-		al_get_mouse_state(&MouseState);
-		al_get_keyboard_state(&KeyboardState);
-		if (al_key_down(&KeyboardState, ALLEGRO_KEY_ESCAPE))
+		UpdateInput();
+
+		if (IsKeyPressed(ALLEGRO_KEY_ESCAPE))
 			break;
 
 		while (accumulator > TIME_STEP)
 		{
-			if (al_key_down(&KeyboardState, ALLEGRO_KEY_LEFT))
-				x -= 1;
-			if (al_key_down(&KeyboardState, ALLEGRO_KEY_RIGHT))
-				x += 1;
-			if (al_key_down(&KeyboardState, ALLEGRO_KEY_UP))
-				y -= 1;
-			if (al_key_down(&KeyboardState, ALLEGRO_KEY_DOWN))
-				y += 1;
+			DoLogic();
 			accumulator -= TIME_STEP;
 		}
-		//render
-
 		al_clear_to_color(al_map_rgb(0x77, 0, 255));
-		al_draw_filled_circle(200, 200, 100,al_map_rgb(127,127,127));
-
-		al_draw_bitmap(bolek, x, y, 0);
-		
-		al_draw_text(arial, al_map_rgb(255, 255, 255), 200, 200, 0, "#walesacontent");
+		Render();
 		al_flip_display();
 	}
 
