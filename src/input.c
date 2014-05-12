@@ -5,7 +5,7 @@ void InitInput(void)
 	
 }
 void UpdateInput(void);
-bool IsKeyPressed(int keyCode);
+int IsKeyPressed(int keyCode);
 
 
 

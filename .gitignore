@@ -16,3 +16,11 @@
 *.exe
 *.out
 *.app
+*.log
+*.ilk
+*.pdb
+*.obj
+*.tlog
+bin/Release
+bin/Debug
+proj/PlusyUjemne.opensdf
