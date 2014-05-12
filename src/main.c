@@ -35,6 +35,11 @@ void testll(void)
 	PrependLL(ll, d);
 	PrependLL(ll, e);
 
+	printll(ll);
+
+	ReleaseLinkedList(ll);
+	return;
+
 	RemoveLL(ll, a);
 	RemoveLL(ll, d);
 	RemoveLL(ll, b);
@@ -43,6 +48,7 @@ void testll(void)
 	RemoveLL(ll, e);
 
 	printll(ll);
+	ReleaseLinkedList(ll);
 }
 
 
