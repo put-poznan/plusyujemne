@@ -1,10 +1,9 @@
 #ifndef _INPUT_H
 #define _INPUT_H
+#include <allegro5/allegro5.h>
 
-#include <allegro/allegro5.h>
-
-void InitInput(void);
 void UpdateInput(void);
-bool IsKeyPressed(int keyCode);
+int IsKeyPressed(int keyCode);
 
-#define
+
+#endif

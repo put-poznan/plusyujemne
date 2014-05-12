@@ -1,88 +1,91 @@
-//#include <allegro5\allegro5.h>
+
+#include <allegro5\allegro5.h>
+#include <allegro5\allegro_font.h>
+#include <allegro5\allegro_ttf.h>
+#include <allegro5\allegro_primitives.h>
+#include <allegro5\allegro_image.h>
+
 #include <stdio.h>
 #include "LinkedList.h"
+#include "input.h"
+#include "init.h"
+#include "util.h"
 
-//void init(ALLEGRO_DISPLAY **disp, int xres, int yres)
-//{
-//	al_init();
-//	*disp = al_create_display(xres, yres);	
-//	
-//}
 
-void printll(struct LinkedList *ll)
+struct GameEntity bolek;
+ALLEGRO_FONT *arial;
+
+void DoLogic(void)
 {
-	struct LinkedListNode *iter = ll->head;
-	while(iter != NULL)
-	{
-		puts(iter->val);
-		iter = iter->next;
-	}
+	if (IsKeyPressed(ALLEGRO_KEY_LEFT))
+		bolek.Pos.x -= 1;
+	if (IsKeyPressed(ALLEGRO_KEY_RIGHT))
+		bolek.Pos.x += 1;
+	if (IsKeyPressed(ALLEGRO_KEY_UP))
+		bolek.Pos.y -= 1;
+	if (IsKeyPressed(ALLEGRO_KEY_DOWN))
+		bolek.Pos.y += 1;
 }
 
-void testll(void)
+void Render(void)
 {
-	struct LinkedList *ll = CreateLinkedList();
-	char* a = "tusk";
-	char* b = "jkm";
-	char* c = "krul";
-	char* d = "axelio";
-	char* e = "lech";
 
-	PrependLL(ll, a);
-	PrependLL(ll, b);
-	PrependLL(ll, c);
-	PrependLL(ll, d);
-	PrependLL(ll, e);
 
-	RemoveLL(ll, a);
-	RemoveLL(ll, d);
-	RemoveLL(ll, b);
-	printll(ll);
-	RemoveLL(ll, c);
-	RemoveLL(ll, e);
 
-	printll(ll);
+	RenderGE(bolek);
+
+
+	al_draw_text(arial, al_map_rgb(255, 255, 255), 200, 200, 0, "#walesacontent");
 }
-
-
-
 
 int main(int argc, char ** argv)
 {
 	argc;
 	argv;
-	testll();
-	return 0;
+	ALLEGRO_DISPLAY *display = NULL;
+
+	init(&display, 800, 600);
+
+	arial = al_create_builtin_font();
+	ALLEGRO_BITMAP *bolekbmp = al_load_bitmap("gfx/bolek.png");
+
+	bolek.bitmap = bolekbmp;
+	bolek.Pos.x = 100;
+	bolek.Pos.y = 100;
 
 
-	//puts("start while");
-	//fflush(stdout);
-	//ALLEGRO_DISPLAY *display = NULL;
-	//
- //  ALLEGRO_EVENT_QUEUE *event_queue = NULL;
 
-	//init(&display,1024,600);
- //  
- //   al_install_keyboard();
-	//
-	//ALLEGRO_KEYBOARD_STATE KeyboardState;
-	//puts("przed while");
-	//fflush(stdout);
-	//while(1)
-	//{
-	//	/*
-	//	al_get_keyboard_state(&KeyboardState);
-	//	if(al_key_down(&KeyboardState, ALLEGRO_KEY_ESCAPE))
-	//		;//break;
-	//	*/
-	//	
-	//	
-	//	al_clear_to_color(al_map_rgb(0x77,0,255));
-	//	al_flip_display();
-	//}
-	//puts("po while");;
+	double dt = 0.0;
+	double lastUpdateTime = al_current_time();
+	double accumulator = 0;
+	double TIME_STEP = 1. / 30;
 
-	//al_destroy_display(display);
+
+
+	UpdateInput();
+	int isRunning = 1;
+	while (isRunning)
+	{
+		dt = al_current_time() - lastUpdateTime;
+		lastUpdateTime += dt;
+		accumulator += dt;
+
+		UpdateInput();
+
+		if (IsKeyPressed(ALLEGRO_KEY_ESCAPE))
+			break;
+
+		while (accumulator > TIME_STEP)
+		{
+			DoLogic();
+			accumulator -= TIME_STEP;
+		}
+		al_clear_to_color(al_map_rgb(0x77, 0, 255));
+		Render();
+		al_flip_display();
+	}
+
+	al_destroy_display(display);
 
 	return 0;
 }

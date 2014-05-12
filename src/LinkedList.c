@@ -50,3 +50,18 @@ void RemoveLL(struct LinkedList *list, item_t item)
 	}
 
 }
+
+void ReleaseLinkedList(struct LinkedList *list)
+{
+	struct LinkedListNode *next;
+	assert(list != NULL);
+
+	if (list->head == NULL)
+		return;
+
+
+	next = list->head->next;
+	free(list->head);
+	list->head = next;
+	ReleaseLinkedList(list);
+}
