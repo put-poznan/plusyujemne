@@ -1,9 +1,13 @@
 #include "ImageManager.h"
 #include "util.h"
+#include "config.h"
 
 struct ImageManager ImageMan;
 
 void LoadImages(void)
 {
 	ImageMan.StandardBullet = LoadImageFile("gfx/bullet.png");
+	ImageMan.Background = load_bitmap_at_size("gfx/background.png", g_GLobalConfiguration.XResolution,
+		g_GLobalConfiguration.YResolution);
+	//ImageMan.Background = LoadImageFile("gfx/background.png");
 }

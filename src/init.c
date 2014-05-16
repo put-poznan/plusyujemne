@@ -17,12 +17,12 @@ void init(ALLEGRO_DISPLAY **disp)
 	al_init_primitives_addon();
 	al_init_image_addon();
 	al_install_mouse();
-
 	g_GLobalConfiguration = LoadConfigFile("xd");
+	*disp = al_create_display(g_GLobalConfiguration.XResolution,
+		g_GLobalConfiguration.YResolution);
+
 
 	LoadImages();
 
-	*disp = al_create_display(g_GLobalConfiguration.XResolution, 
-		g_GLobalConfiguration.YResolution);
 
 }

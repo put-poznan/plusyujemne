@@ -4,6 +4,7 @@
 #include <allegro5\allegro_ttf.h>
 #include <allegro5\allegro_primitives.h>
 #include <allegro5\allegro_image.h>
+#include <allegro5\display.h>
 
 #include <stdio.h>
 #include "LinkedList.h"
@@ -14,7 +15,7 @@
 #include "AnimatedSprite.h"
 #include "Player.h"
 #include "Bullet.h"
-
+#include "Background.h"
 
 struct GameEntity bolek;
 ALLEGRO_FONT *arial;
@@ -35,12 +36,22 @@ void DoLogic(void)
 		ShootStandard(&player);
 
 	UpdatePlayer(&player);
+	UpdateBackground();
 }
 
 void Render(void)
 {
 
-
+	RenderBackground();
+	RenderGE(bolek);
+	RenderGE(bolek);
+	RenderGE(bolek);
+	RenderGE(bolek);
+	RenderGE(bolek);
+	RenderGE(bolek);
+	RenderGE(bolek);
+	RenderGE(bolek);
+	RenderGE(bolek);
 	RenderGE(bolek);
 	DrawAS(&player.Sprite);
 
@@ -99,11 +110,13 @@ int main(int argc, char ** argv)
 		while (accumulator > TIME_STEP)
 		{
 			DoLogic();
+
 			accumulator -= TIME_STEP;
 		}
-		al_clear_to_color(al_map_rgb(0x77, 0, 255));
 		Render();
+
 		al_flip_display();
+		al_clear_to_color(al_map_rgb(0x77, 0, 255));
 	}
 
 	al_destroy_display(display);

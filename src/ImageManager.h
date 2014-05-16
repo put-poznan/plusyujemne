@@ -11,6 +11,7 @@ struct ImageManager
 {
 	ALLEGRO_BITMAP *Player;
 	ALLEGRO_BITMAP *StandardBullet;
+	ALLEGRO_BITMAP *Background;
 
 };
 

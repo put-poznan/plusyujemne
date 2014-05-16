@@ -23,6 +23,8 @@ struct GameEntity
 void RenderGE(const struct GameEntity entity);
 
 ALLEGRO_BITMAP *LoadImageFile(const char *filename);
+ALLEGRO_BITMAP *load_bitmap_at_size(const char *filename, int w, int h);
+
 
 struct Vector2 GetScreenCenter(void);
 
