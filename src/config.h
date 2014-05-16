@@ -4,8 +4,8 @@
 struct Configuration
 {
 	int XResolution, YResolution;
-	double ShipSpeed;
-	double RocketSpeed;
+	float ShipSpeed;
+	float RocketSpeed;
 };
 
 struct Configuration LoadConfigFile(const char *filename);

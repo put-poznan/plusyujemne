@@ -1,5 +1,4 @@
-dd
-xd
-dd
-xx
-XResolution = 5
+RocketSpeed = 10
+ShipSpeed = 10
+XResolution = 800
+YResolution = 600

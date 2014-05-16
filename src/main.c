@@ -40,13 +40,11 @@ void Render(void)
 
 int main(int argc, char ** argv)
 {
-	
-	LoadConfigFile("xd");
 	argc;
 	argv;
 	ALLEGRO_DISPLAY *display = NULL;
 
-	init(&display, 800, 600);
+	init(&display);
 
 	arial = al_create_builtin_font();
 	ALLEGRO_BITMAP *bolekbmp = al_load_bitmap("gfx/bolek.png");

@@ -59,6 +59,8 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <TreatWarningAsError>true</TreatWarningAsError>
+      <SDLCheck>false</SDLCheck>
+      <DisableSpecificWarnings>4996</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <TargetMachine>MachineX86</TargetMachine>
@@ -73,6 +75,7 @@
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <WarningLevel>Level4</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <SDLCheck>false</SDLCheck>
     </ClCompile>
     <Link>
       <TargetMachine>MachineX86</TargetMachine>
@@ -84,6 +87,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\src\config.c" />
     <ClCompile Include="..\src\init.c">
       <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">CompileAsC</CompileAs>
       <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">CompileAsC</CompileAs>
@@ -94,6 +98,7 @@
     <ClCompile Include="..\src\util.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\src\config.h" />
     <ClInclude Include="..\src\init.h" />
     <ClInclude Include="..\src\input.h" />
     <ClInclude Include="..\src\LinkedList.h" />

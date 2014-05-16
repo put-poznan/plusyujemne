@@ -6,8 +6,11 @@
 #include <allegro5\allegro_primitives.h>
 #include <allegro5\allegro_image.h>
 
-void init(ALLEGRO_DISPLAY **disp, int xres, int yres)
+#include "config.h"
+
+void init(ALLEGRO_DISPLAY **disp)
 {
+	struct Configuration cfg;
 	al_init();
 	al_install_keyboard();
 	al_init_font_addon();
@@ -15,5 +18,7 @@ void init(ALLEGRO_DISPLAY **disp, int xres, int yres)
 	al_init_image_addon();
 	al_install_mouse();
 
-	*disp = al_create_display(xres, yres);
+	cfg = LoadConfigFile("xd");
+
+	*disp = al_create_display(cfg.XResolution, cfg.YResolution);
 }
