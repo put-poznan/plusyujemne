@@ -9,8 +9,8 @@
 
 struct Vector2
 {
-	double x;
-	double y;
+	float x;
+	float y;
 };
 
 struct GameEntity
@@ -22,5 +22,8 @@ struct GameEntity
 
 void RenderGE(const struct GameEntity entity);
 
+ALLEGRO_BITMAP *LoadImageFile(const char *filename);
+
+struct Vector2 GetScreenCenter(void);
 
 #endif

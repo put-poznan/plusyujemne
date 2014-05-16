@@ -1,4 +1,6 @@
-RocketSpeed = 10
+RocketSpeed = 1
 ShipSpeed = 10
 XResolution = 800
 YResolution = 600
+PlayerXVelocity = 7.4
+PlayerYVelocity = 4.6

@@ -10,7 +10,6 @@
 
 void init(ALLEGRO_DISPLAY **disp)
 {
-	struct Configuration cfg;
 	al_init();
 	al_install_keyboard();
 	al_init_font_addon();
@@ -18,7 +17,8 @@ void init(ALLEGRO_DISPLAY **disp)
 	al_init_image_addon();
 	al_install_mouse();
 
-	cfg = LoadConfigFile("xd");
+	g_GLobalConfiguration = LoadConfigFile("xd");
 
-	*disp = al_create_display(cfg.XResolution, cfg.YResolution);
+	*disp = al_create_display(g_GLobalConfiguration.XResolution, 
+		g_GLobalConfiguration.YResolution);
 }

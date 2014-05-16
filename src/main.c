@@ -11,21 +11,26 @@
 #include "init.h"
 #include "util.h"
 #include "config.h"
+#include "AnimatedSprite.h"
+#include "Player.h"
 
 
 struct GameEntity bolek;
 ALLEGRO_FONT *arial;
+struct Player player;
 
 void DoLogic(void)
 {
 	if (IsKeyPressed(ALLEGRO_KEY_LEFT))
-		bolek.Pos.x -= 1;
-	if (IsKeyPressed(ALLEGRO_KEY_RIGHT))
-		bolek.Pos.x += 1;
-	if (IsKeyPressed(ALLEGRO_KEY_UP))
-		bolek.Pos.y -= 1;
-	if (IsKeyPressed(ALLEGRO_KEY_DOWN))
-		bolek.Pos.y += 1;
+		MoveLeft(&player);
+	else if (IsKeyPressed(ALLEGRO_KEY_RIGHT))
+		MoveRight(&player);
+	else if (IsKeyPressed(ALLEGRO_KEY_UP))
+		MoveUp(&player);
+	else if (IsKeyPressed(ALLEGRO_KEY_DOWN))
+		MoveDown(&player);
+
+	UpdateAS(&(player.Sprite), 1);
 }
 
 void Render(void)
@@ -33,7 +38,7 @@ void Render(void)
 
 
 	RenderGE(bolek);
-
+	DrawAS(&player.Sprite);
 
 	al_draw_text(arial, al_map_rgb(255, 255, 255), 200, 200, 0, "#walesacontent");
 }
@@ -47,7 +52,11 @@ int main(int argc, char ** argv)
 	init(&display);
 
 	arial = al_create_builtin_font();
-	ALLEGRO_BITMAP *bolekbmp = al_load_bitmap("gfx/bolek.png");
+	ALLEGRO_BITMAP *bolekbmp = LoadImageFile("gfx/bolek.png");
+
+	struct Vector2 zero;
+	zero.x = zero.y = 0;
+	player = CreatePlayer();
 
 	bolek.bitmap = bolekbmp;
 	bolek.Pos.x = 100;

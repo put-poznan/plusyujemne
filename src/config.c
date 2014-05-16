@@ -4,6 +4,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+struct Configuration g_GLobalConfiguration;
+
 struct Configuration LoadConfigFile(const char *filename)
 {
 	assert(filename != NULL);
@@ -29,9 +31,13 @@ struct Configuration LoadConfigFile(const char *filename)
 			else if (strcmp("YResolution ", name)==0)
 				xd.YResolution = atoi(val);
 			else if (strcmp("ShipSpeed ", name)==0)
-				xd.ShipSpeed = (float) atof(val);
-			else if (strcmp("RocketSpeed ", name)==0)
-				xd.RocketSpeed = (float) atof(val);
+				xd.ShipSpeed = (float)atof(val);
+			else if (strcmp("RocketSpeed ", name) == 0)
+				xd.RocketSpeed = (float)atof(val);
+			else if (strcmp("PlayerXVelocity ", name) == 0)
+				xd.PlayerXVelocity = (float)atof(val);
+			else if (strcmp("PlayerYVelocity ", name) == 0)
+				xd.PlayerYVelocity = (float)atof(val);
 			else
 				fprintf(stderr, "Unknown config entry: %s\n", name);
 		}
