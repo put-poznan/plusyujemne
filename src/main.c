@@ -10,6 +10,7 @@
 #include "input.h"
 #include "init.h"
 #include "util.h"
+#include "config.h"
 
 
 struct GameEntity bolek;
@@ -31,7 +32,6 @@ void Render(void)
 {
 
 
-
 	RenderGE(bolek);
 
 
@@ -40,6 +40,8 @@ void Render(void)
 
 int main(int argc, char ** argv)
 {
+	
+	LoadConfigFile("xd");
 	argc;
 	argv;
 	ALLEGRO_DISPLAY *display = NULL;
