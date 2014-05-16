@@ -1,6 +1,7 @@
 #include "Player.h"
 #include "util.h"
 #include "config.h"
+#include "Bullet.h"
 
 struct Player CreatePlayer(void)
 {
@@ -9,6 +10,9 @@ struct Player CreatePlayer(void)
 	p.Sprite = CreateAnimatedSprite(GetScreenCenter(), bmp, 3, 3);
 	p.XVelocity = g_GLobalConfiguration.PlayerXVelocity;
 	p.YVelocity = g_GLobalConfiguration.PlayerYVelocity;
+	p.Bullets = CreateLinkedList();
+	p.StandardShootInterval = 5;
+	p.TimeToStandardShoot = 0;
 	return p;
 }
 
@@ -43,4 +47,43 @@ void MoveDown(struct Player *p)
 	if (newY + (int)p->Sprite.YFrameSize >= g_GLobalConfiguration.YResolution)
 		newY = g_GLobalConfiguration.YResolution - p->Sprite.YFrameSize;
 	p->Sprite.Positon.y = newY;
+}
+
+void ShootStandard(struct Player *p)
+{
+	if (p->TimeToStandardShoot == 0)
+	{
+		p->TimeToStandardShoot = p->StandardShootInterval;
+		struct Vector2 pos;
+		struct Bullet *b = CreateStandardBullet(p->Sprite.Positon);
+		pos.x = p->Sprite.Positon.x + p->Sprite.XFrameSize / 2 - b->as.XFrameSize / 2;
+		pos.y = p->Sprite.Positon.y;
+		b->as.Positon = pos;
+		PrependLL(p->Bullets, b);
+	}
+}
+
+void UpdatePlayer(struct Player *p)
+{
+	UpdateAS(&(p->Sprite), 1);
+	struct LinkedListNode *iter = p->Bullets->head;
+	struct LinkedList *toDelete = CreateLinkedList();
+	while (iter != NULL)
+	{
+		UpdateBullet(iter->val);
+		struct Bullet *b = iter->val;
+		if(!b->IsAlive)
+			PrependLL(toDelete, iter->val);
+		iter = iter->next;
+	}
+	iter = toDelete->head;
+	while (iter != NULL)
+	{
+		RemoveLL(p->Bullets, iter->val);
+		iter = iter->next;
+	}
+	ReleaseLinkedList(toDelete, 0);
+	
+	if (p->TimeToStandardShoot > 0)
+		p->TimeToStandardShoot--;
 }

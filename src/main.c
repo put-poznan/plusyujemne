@@ -13,6 +13,7 @@
 #include "config.h"
 #include "AnimatedSprite.h"
 #include "Player.h"
+#include "Bullet.h"
 
 
 struct GameEntity bolek;
@@ -23,14 +24,17 @@ void DoLogic(void)
 {
 	if (IsKeyPressed(ALLEGRO_KEY_LEFT))
 		MoveLeft(&player);
-	else if (IsKeyPressed(ALLEGRO_KEY_RIGHT))
+	if (IsKeyPressed(ALLEGRO_KEY_RIGHT))
 		MoveRight(&player);
-	else if (IsKeyPressed(ALLEGRO_KEY_UP))
+	if (IsKeyPressed(ALLEGRO_KEY_UP))
 		MoveUp(&player);
-	else if (IsKeyPressed(ALLEGRO_KEY_DOWN))
+	if (IsKeyPressed(ALLEGRO_KEY_DOWN))
 		MoveDown(&player);
+	
+	if (IsKeyPressed(ALLEGRO_KEY_SPACE))
+		ShootStandard(&player);
 
-	UpdateAS(&(player.Sprite), 1);
+	UpdatePlayer(&player);
 }
 
 void Render(void)
@@ -39,6 +43,14 @@ void Render(void)
 
 	RenderGE(bolek);
 	DrawAS(&player.Sprite);
+
+	struct LinkedListNode *iter = player.Bullets->head;
+	while (iter != NULL)
+	{
+		struct Bullet *b = (struct Bullet*) iter->val;
+		DrawAS(&b->as);
+		iter = iter->next;
+	}
 
 	al_draw_text(arial, al_map_rgb(255, 255, 255), 200, 200, 0, "#walesacontent");
 }

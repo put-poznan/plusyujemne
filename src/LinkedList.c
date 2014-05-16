@@ -1,6 +1,7 @@
 #include "LinkedList.h"
 #include <stdlib.h>
 #include <assert.h>
+#include <stdio.h>
 
 struct LinkedList *CreateLinkedList(void)
 {
@@ -51,7 +52,7 @@ void RemoveLL(struct LinkedList *list, item_t item)
 
 }
 
-void ReleaseLinkedList(struct LinkedList *list)
+void ReleaseLinkedList(struct LinkedList *list, int callFree)
 {
 	struct LinkedListNode *next;
 	assert(list != NULL);
@@ -61,7 +62,8 @@ void ReleaseLinkedList(struct LinkedList *list)
 
 
 	next = list->head->next;
-	free(list->head);
+	if(callFree)
+		free(list->head);
 	list->head = next;
-	ReleaseLinkedList(list);
+	ReleaseLinkedList(list, callFree);
 }

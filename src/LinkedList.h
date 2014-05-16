@@ -16,7 +16,7 @@ struct LinkedList
 };
 
 struct LinkedList *CreateLinkedList(void);
-void ReleaseLinkedList(struct LinkedList *list);
+void ReleaseLinkedList(struct LinkedList *list, int callFree);
 
 void PrependLL(struct LinkedList *list, item_t item);
 void RemoveLL(struct LinkedList *list, item_t item);

@@ -7,6 +7,7 @@
 #include <allegro5\allegro_image.h>
 
 #include "config.h"
+#include "ImageManager.h"
 
 void init(ALLEGRO_DISPLAY **disp)
 {
@@ -19,6 +20,9 @@ void init(ALLEGRO_DISPLAY **disp)
 
 	g_GLobalConfiguration = LoadConfigFile("xd");
 
+	LoadImages();
+
 	*disp = al_create_display(g_GLobalConfiguration.XResolution, 
 		g_GLobalConfiguration.YResolution);
+
 }

@@ -34,7 +34,7 @@ void DrawAS(struct AnimatedSprite *as)
 	al_draw_bitmap_region(as->Bitmap, as->XFrame * as->XFrameSize, 0,
 		as->XFrameSize, as->YFrameSize, as->Positon.x, as->Positon.y, 0);
 
-
-
 }
+
+
 

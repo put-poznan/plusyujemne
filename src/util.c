@@ -8,6 +8,7 @@
 #include <stdio.h>
 
 #include "init.h"
+#include "ImageManager.h"
 
 void RenderGE(const struct GameEntity entity)
 {
@@ -35,5 +36,3 @@ struct Vector2 GetScreenCenter(void)
 	return center;
 
 }
-
-
