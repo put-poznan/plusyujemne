@@ -13,6 +13,8 @@ struct Player CreatePlayer(void)
 	p.Bullets = CreateLinkedList();
 	p.StandardShootInterval = 5;
 	p.TimeToStandardShoot = 0;
+	p.MissileShootInterval = 50;
+	p.TimeToMissileShoot = 0;
 	return p;
 }
 
@@ -63,6 +65,20 @@ void ShootStandard(struct Player *p)
 	}
 }
 
+void ShootMissile(struct Player *p)
+{
+	if (p->TimeToMissileShoot == 0)
+	{
+		p->TimeToMissileShoot = p->MissileShootInterval;
+		struct Vector2 pos;
+		struct Bullet *b = CreateMissile(p->Sprite.Positon);
+		pos.x = p->Sprite.Positon.x + p->Sprite.XFrameSize / 2 - b->as.XFrameSize / 2;
+		pos.y = p->Sprite.Positon.y;
+		b->as.Positon = pos;
+		PrependLL(p->Bullets, b);
+	}
+}
+
 void UpdatePlayer(struct Player *p)
 {
 	UpdateAS(&(p->Sprite), 1);
@@ -83,7 +99,9 @@ void UpdatePlayer(struct Player *p)
 		iter = iter->next;
 	}
 	ReleaseLinkedList(toDelete, 0);
-	
+
 	if (p->TimeToStandardShoot > 0)
 		p->TimeToStandardShoot--;
+	if (p->TimeToMissileShoot > 0)
+		p->TimeToMissileShoot--;
 }

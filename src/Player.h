@@ -11,6 +11,8 @@ struct Player
 	struct LinkedList *Bullets;
 	int StandardShootInterval;
 	int TimeToStandardShoot;
+	int MissileShootInterval;
+	int TimeToMissileShoot;
 };
 
 
@@ -21,6 +23,7 @@ void MoveUp(struct Player *p);
 void MoveDown(struct Player *p);
 
 void ShootStandard(struct Player *p);
+void ShootMissile(struct Player *p);
 void UpdatePlayer(struct Player *p);
 
 

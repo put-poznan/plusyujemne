@@ -31,9 +31,12 @@ void DoLogic(void)
 		MoveUp(&player);
 	if (IsKeyPressed(ALLEGRO_KEY_DOWN))
 		MoveDown(&player);
-	
+
 	if (IsKeyPressed(ALLEGRO_KEY_SPACE))
 		ShootStandard(&player);
+
+	if (IsKeyPressed(ALLEGRO_KEY_LCTRL))
+		ShootMissile(&player);
 
 	UpdatePlayer(&player);
 	UpdateBackground();
@@ -53,7 +56,6 @@ void Render(void)
 	RenderGE(bolek);
 	RenderGE(bolek);
 	RenderGE(bolek);
-	DrawAS(&player.Sprite);
 
 	struct LinkedListNode *iter = player.Bullets->head;
 	while (iter != NULL)
@@ -63,6 +65,7 @@ void Render(void)
 		iter = iter->next;
 	}
 
+	DrawAS(&player.Sprite);
 	al_draw_text(arial, al_map_rgb(255, 255, 255), 200, 200, 0, "#walesacontent");
 }
 

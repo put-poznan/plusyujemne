@@ -12,7 +12,8 @@ struct ImageManager
 	ALLEGRO_BITMAP *Player;
 	ALLEGRO_BITMAP *StandardBullet;
 	ALLEGRO_BITMAP *Background;
-
+	ALLEGRO_BITMAP *MissileBullet;
+	
 };
 
 extern struct ImageManager ImageMan;

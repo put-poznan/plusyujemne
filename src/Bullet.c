@@ -12,8 +12,19 @@ struct Bullet *CreateStandardBullet(struct Vector2 spawn)
 	b->Velocity = 9;
 
 	return b;
-
 }
+
+struct Bullet *CreateMissile(struct Vector2 spawn)
+{
+	struct Bullet *b = malloc(sizeof(struct Bullet));
+	b->as = CreateAnimatedSprite(spawn, ImageMan.MissileBullet, 2, 10);
+	b->Damage = 100;
+	b->IsAlive = 1;
+	b->Velocity = 11;
+
+	return b;
+}
+
 
 void UpdateBullet(struct Bullet *b)
 {

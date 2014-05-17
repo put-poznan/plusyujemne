@@ -13,6 +13,8 @@ struct Bullet
 
 struct Bullet *CreateStandardBullet(struct Vector2 spawn);
 
+struct Bullet *CreateMissile(struct Vector2 spawn);
+
 void UpdateBullet(struct Bullet *b);
 
 
