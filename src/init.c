@@ -8,6 +8,7 @@
 
 #include "config.h"
 #include "ImageManager.h"
+#include "hud.h"
 
 void init(ALLEGRO_DISPLAY **disp)
 {
@@ -23,6 +24,6 @@ void init(ALLEGRO_DISPLAY **disp)
 
 
 	LoadImages();
-
+	InitHUD();
 
 }

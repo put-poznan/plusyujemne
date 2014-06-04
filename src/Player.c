@@ -15,6 +15,8 @@ struct Player CreatePlayer(void)
 	p.TimeToStandardShoot = 0;
 	p.MissileShootInterval = 50;
 	p.TimeToMissileShoot = 0;
+	p.HP = 67;
+	p.MaxHP = 100;
 	return p;
 }
 

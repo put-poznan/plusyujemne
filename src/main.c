@@ -16,6 +16,7 @@
 #include "Player.h"
 #include "Bullet.h"
 #include "Background.h"
+#include "hud.h"
 
 struct GameEntity bolek;
 ALLEGRO_FONT *arial;
@@ -46,16 +47,6 @@ void Render(void)
 {
 
 	RenderBackground();
-	RenderGE(bolek);
-	RenderGE(bolek);
-	RenderGE(bolek);
-	RenderGE(bolek);
-	RenderGE(bolek);
-	RenderGE(bolek);
-	RenderGE(bolek);
-	RenderGE(bolek);
-	RenderGE(bolek);
-	RenderGE(bolek);
 
 	struct LinkedListNode *iter = player.Bullets->head;
 	while (iter != NULL)
@@ -66,6 +57,9 @@ void Render(void)
 	}
 
 	DrawAS(&player.Sprite);
+
+	RenderHUD(player.HP, player.MaxHP, 250);
+
 	al_draw_text(arial, al_map_rgb(255, 255, 255), 200, 200, 0, "#walesacontent");
 }
 

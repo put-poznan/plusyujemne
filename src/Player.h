@@ -13,6 +13,8 @@ struct Player
 	int TimeToStandardShoot;
 	int MissileShootInterval;
 	int TimeToMissileShoot;
+	int HP;
+	int MaxHP;
 };
 
 
