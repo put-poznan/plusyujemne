@@ -48,6 +48,9 @@
     <ClCompile Include="..\src\Background.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\hud.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\init.h">
@@ -81,6 +84,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\src\Background.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Enemy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\hud.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

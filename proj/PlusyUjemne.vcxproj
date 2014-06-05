@@ -91,6 +91,7 @@
     <ClCompile Include="..\src\Background.c" />
     <ClCompile Include="..\src\Bullet.c" />
     <ClCompile Include="..\src\config.c" />
+    <ClCompile Include="..\src\hud.c" />
     <ClCompile Include="..\src\ImageManager.c" />
     <ClCompile Include="..\src\init.c">
       <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">CompileAsC</CompileAs>
@@ -107,6 +108,8 @@
     <ClInclude Include="..\src\Bullet.h" />
     <ClInclude Include="..\src\AnimatedSprite.h" />
     <ClInclude Include="..\src\config.h" />
+    <ClInclude Include="..\src\Enemy.h" />
+    <ClInclude Include="..\src\hud.h" />
     <ClInclude Include="..\src\ImageManager.h" />
     <ClInclude Include="..\src\init.h" />
     <ClInclude Include="..\src\input.h" />
