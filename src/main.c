@@ -44,7 +44,7 @@ void DoLogic(void)
 		SpawnEnemy(AI_IDIOT);
 
 	UpdatePlayer(&player);
-	UpdateEnemies();
+	UpdateEnemies(player.Sprite.Positon.x);
 	UpdateBackground();
 }
 

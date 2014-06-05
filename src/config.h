@@ -7,7 +7,8 @@ struct Configuration
 	float ShipSpeed;
 	float RocketSpeed;
 	float PlayerXVelocity, PlayerYVelocity;
-	int IdiotInterval;
+	int IdiotInterval, KamikadzeInterval;
+	int EnemyShootInterval;
 };
 
 extern struct Configuration g_GLobalConfiguration;

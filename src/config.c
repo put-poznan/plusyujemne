@@ -40,6 +40,10 @@ struct Configuration LoadConfigFile(const char *filename)
 				xd.PlayerYVelocity = (float)atof(val);
 			else if (strcmp("IdiotInterval ", name) == 0)
 				xd.IdiotInterval = atoi(val);
+			else if (strcmp("KamikadzeInterval ", name) == 0)
+				xd.KamikadzeInterval = atoi(val);
+			else if (strcmp("EnemyShootInterval ", name) == 0)
+				xd.EnemyShootInterval = atoi(val);
 			else
 				fprintf(stderr, "Unknown config entry: %s\n", name);
 		}

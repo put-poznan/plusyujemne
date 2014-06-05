@@ -26,7 +26,7 @@ void ReleaseEnemy(struct Enemy *enemy);
 
 void SpawnEnemy(enum ENEMY_AI ai);
 
-void UpdateEnemies(void);
+void UpdateEnemies(int playerXPos);
 void RenderEnemies(void);
 
 void CloseEnemy(void);
