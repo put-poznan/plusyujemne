@@ -37,6 +37,15 @@ void RemoveLL(struct LinkedList *list, item_t item)
 		return;
 	}
 
+	//really don't like it but its late and i have no better idea
+	if (list->head->val == item)
+	{
+		todel = list->head;
+		list->head = list->head->next;
+		free(todel);
+		return;
+	}
+
 	struct LinkedListNode *iter = list->head;
 	while(iter->next != NULL)
 	{
