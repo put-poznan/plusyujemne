@@ -17,6 +17,7 @@
 #include "Bullet.h"
 #include "Background.h"
 #include "hud.h"
+#include "Enemy.h"
 
 struct GameEntity bolek;
 ALLEGRO_FONT *arial;
@@ -39,7 +40,11 @@ void DoLogic(void)
 	if (IsKeyPressed(ALLEGRO_KEY_LCTRL))
 		ShootMissile(&player);
 
+	if (IsKeyPressed(ALLEGRO_KEY_LSHIFT))
+		SpawnEnemy(AI_IDIOT);
+
 	UpdatePlayer(&player);
+	UpdateEnemies();
 	UpdateBackground();
 }
 
@@ -57,6 +62,7 @@ void Render(void)
 	}
 
 	DrawAS(&player.Sprite);
+	RenderEnemies();
 
 	RenderHUD(player.HP, player.MaxHP, 250);
 
@@ -117,6 +123,7 @@ int main(int argc, char ** argv)
 	}
 
 	al_destroy_display(display);
+	CloseEnemy();
 
 	return 0;
 }

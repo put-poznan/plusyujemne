@@ -4,3 +4,4 @@ XResolution = 800
 YResolution = 600
 PlayerXVelocity = 7.4
 PlayerYVelocity = 4.6
+IdiotInterval = 70

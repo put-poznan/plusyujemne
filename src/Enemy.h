@@ -4,22 +4,31 @@
 #include "AnimatedSprite.h"
 #include "config.h"
 
-enum ENEMY_AI {IDIOT, KAMIKADZE};
+enum ENEMY_AI {AI_IDIOT, AI_KAMIKADZE};
+
+extern struct LinkedList *Enemies;
+extern struct LinkedList *Bullets;
 
 struct Enemy
 {
 	struct AnimatedSprite Sprite;
 	float YVelocity, XVelocity;
-	struct LinkedList *Bullets;
+	//struct LinkedList *Bullets;
 	int ShootInterval;
 	int TimeToShoot;
-	ENEMY_AI Ai;
+	enum ENEMY_AI Ai;
 };
 
-struct Enemy *CreateStandardEnemy(void)
-{
-	struct Enemy *enemy = malloc(sizeof(struct Enemy));
-	enemy->Sprite = 
-}
+void InitEnemy(void);
+
+//struct Enemy *CreateIdiotEnemy(void);
+void ReleaseEnemy(struct Enemy *enemy);
+
+void SpawnEnemy(enum ENEMY_AI ai);
+
+void UpdateEnemies(void);
+void RenderEnemies(void);
+
+void CloseEnemy(void);
 
 #endif

@@ -38,6 +38,8 @@ struct Configuration LoadConfigFile(const char *filename)
 				xd.PlayerXVelocity = (float)atof(val);
 			else if (strcmp("PlayerYVelocity ", name) == 0)
 				xd.PlayerYVelocity = (float)atof(val);
+			else if (strcmp("IdiotInterval ", name) == 0)
+				xd.IdiotInterval = atoi(val);
 			else
 				fprintf(stderr, "Unknown config entry: %s\n", name);
 		}

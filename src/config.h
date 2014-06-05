@@ -7,6 +7,7 @@ struct Configuration
 	float ShipSpeed;
 	float RocketSpeed;
 	float PlayerXVelocity, PlayerYVelocity;
+	int IdiotInterval;
 };
 
 extern struct Configuration g_GLobalConfiguration;
