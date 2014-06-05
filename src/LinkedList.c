@@ -49,7 +49,9 @@ void RemoveLL(struct LinkedList *list, item_t item)
 		}
 		iter = iter->next;
 	}
-
+#ifndef NDEBUG
+	puts("NO LIST ITEM DELETED");
+#endif
 }
 
 void ReleaseLinkedList(struct LinkedList *list, int callFree)
