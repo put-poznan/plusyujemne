@@ -51,6 +51,43 @@ struct Enemy *CreateKamikadzeEnemy(void)
 	return e;
 }
 
+void EnemyShoot(struct Enemy *e)
+{
+	e->TimeToShoot = e->ShootInterval;
+	struct Vector2 pos;
+	struct Bullet *b;
+	if (e->Ai == AI_IDIOT)
+		b = CreateEnemyIdiotMissile(e->Sprite.Positon);
+	else
+		b = CreateEnemyKamikadzeMissile(e->Sprite.Positon);
+	pos.x = e->Sprite.Positon.x + e->Sprite.XFrameSize / 2 - b->as.XFrameSize / 2;
+	pos.y = e->Sprite.Positon.y;
+	b->as.Positon = pos;
+	PrependLL(Bullets, b);
+
+}
+
+void UpdateBullets(void)
+{
+	struct LinkedListNode *iter = Bullets->head;
+	struct LinkedList *toDelete = CreateLinkedList();
+	while (iter != NULL)
+	{
+		UpdateBullet(iter->val);
+		struct Bullet *b = iter->val;
+		if (!b->IsAlive)
+			PrependLL(toDelete, iter->val);
+		iter = iter->next;
+	}
+	iter = toDelete->head;
+	while (iter != NULL)
+	{
+		RemoveLL(Bullets, iter->val);
+		iter = iter->next;
+	}
+	ReleaseLinkedList(toDelete, 0);
+}
+
 void UpdateEnemies(int playerXPos)
 {
 	assert(Enemies != NULL);
@@ -83,6 +120,11 @@ void UpdateEnemies(int playerXPos)
 			assert(false);
 		}
 
+		if (e->TimeToShoot-- <= 0)
+		{
+			EnemyShoot(e);
+		}
+
 		iter = iter->next;
 	}
 
@@ -93,6 +135,8 @@ void UpdateEnemies(int playerXPos)
 		iter = iter->next;
 	}
 	ReleaseLinkedList(toDelete, 0);
+
+	UpdateBullets();
 
 	ManageSpawn();
 }
@@ -105,6 +149,16 @@ void RenderEnemies(void)
 	{
 		struct Enemy*e = iter->val;
 		DrawAS(&e->Sprite);
+
+		iter = iter->next;
+	}
+
+	assert(Bullets != NULL);
+	iter = Bullets->head;
+	while (iter != NULL)
+	{
+		struct Bullet *b = iter->val;
+		DrawAS(&b->as);
 
 		iter = iter->next;
 	}
@@ -139,6 +193,12 @@ void ManageSpawn(void)
 	if (ticksFromLastSpawnIdiot++ >= g_GLobalConfiguration.IdiotInterval)
 	{
 		ticksFromLastSpawnIdiot -= g_GLobalConfiguration.IdiotInterval;
+		SpawnEnemy(AI_IDIOT);
+	}
+	static int ticksFromLastSpawnKamikadze = 10;
+	if (ticksFromLastSpawnKamikadze++ >= g_GLobalConfiguration.KamikadzeInterval)
+	{
+		ticksFromLastSpawnKamikadze -= g_GLobalConfiguration.KamikadzeInterval;
 		SpawnEnemy(AI_KAMIKADZE);
 	}
 

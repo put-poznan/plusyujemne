@@ -13,7 +13,7 @@ struct ImageManager
 	ALLEGRO_BITMAP *StandardBullet;
 	ALLEGRO_BITMAP *Background;
 	ALLEGRO_BITMAP *MissileBullet;
-	ALLEGRO_BITMAP *Enemy;
+	ALLEGRO_BITMAP *Enemy, *IdiotMissile, *KamikadzeMissile;
 	
 };
 
