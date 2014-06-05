@@ -38,3 +38,11 @@ void DrawAS(struct AnimatedSprite *as)
 
 
 
+int Intersects(struct AnimatedSprite *a, struct AnimatedSprite *b)
+{
+	return
+		a->Positon.x < b->Positon.x + b->XFrameSize &&
+		b->Positon.x < a->Positon.x + a->XFrameSize &&
+		a->Positon.y < b->Positon.y + b->YFrameSize &&
+		b->Positon.y < a->Positon.y + a->YFrameSize;
+}

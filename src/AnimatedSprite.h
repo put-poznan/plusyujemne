@@ -24,5 +24,6 @@ struct AnimatedSprite
 struct AnimatedSprite CreateAnimatedSprite(struct Vector2 pos, ALLEGRO_BITMAP *bmp, size_t frameCount, size_t frameTime);
 void UpdateAS(struct AnimatedSprite *as, int ticks);
 void DrawAS(struct AnimatedSprite *as);
+int Intersects(struct AnimatedSprite *a, struct AnimatedSprite *b);
 
 #endif

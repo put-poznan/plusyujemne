@@ -2,6 +2,7 @@
 #include "util.h"
 #include "config.h"
 #include "Bullet.h"
+#include "Enemy.h"
 
 struct Player CreatePlayer(void)
 {
@@ -81,8 +82,24 @@ void ShootMissile(struct Player *p)
 	}
 }
 
+void CheckCollistions(struct Player *p)
+{
+	struct LinkedListNode *iter = Enemies->head;
+	while (iter != NULL)
+	{
+		struct Enemy *e = iter->val;
+		if (Intersects(&e->Sprite, &p->Sprite))
+			p->HP--;
+
+		iter = iter->next;
+	}
+
+}
+
 void UpdatePlayer(struct Player *p)
 {
+	CheckCollistions(p);
+
 	UpdateAS(&(p->Sprite), 1);
 	struct LinkedListNode *iter = p->Bullets->head;
 	struct LinkedList *toDelete = CreateLinkedList();
