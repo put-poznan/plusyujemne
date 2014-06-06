@@ -23,7 +23,11 @@ struct GameEntity bolek;
 ALLEGRO_FONT *arial;
 struct Player player;
 
-void DoLogic(void)
+enum GAME_STATE {GS_PLAY, GS_END};
+
+enum GAME_STATE GameState = GS_PLAY;
+
+void GameLogic(void)
 {
 	if (IsKeyPressed(ALLEGRO_KEY_LEFT))
 		MoveLeft(&player);
@@ -46,11 +50,19 @@ void DoLogic(void)
 	UpdatePlayer(&player);
 	UpdateEnemies(player.Sprite.Positon.x);
 	UpdateBackground();
+
+	if(player.HP <= 0)
+		GameState = GS_END;
+
 }
 
-void Render(void)
+void DoLogic(void)
 {
-
+	if(GameState == GS_PLAY)
+		GameLogic();
+}
+void RenderGame(void)
+{	
 	RenderBackground();
 
 	struct LinkedListNode *iter = player.Bullets->head;
@@ -65,8 +77,13 @@ void Render(void)
 	RenderEnemies();
 
 	RenderHUD(player.HP, player.MaxHP, 250);
-
-	al_draw_text(arial, al_map_rgb(255, 255, 255), 200, 200, 0, "#walesacontent");
+}
+void Render(void)
+{
+	if(GameState == GS_PLAY)
+		RenderGame();
+	else
+		al_draw_text(arial, al_map_rgb(255, 255, 255), 200, 200, 0, "#walesacontent");
 }
 
 int main(int argc, char ** argv)
