@@ -44,6 +44,10 @@ struct Configuration LoadConfigFile(const char *filename)
 				xd.KamikadzeInterval = atoi(val);
 			else if (strcmp("EnemyShootInterval ", name) == 0)
 				xd.EnemyShootInterval = atoi(val);
+			else if (strcmp("EnemyCrashDamage ", name) == 0)
+				xd.EnemyCrashDamage = (float) atof(val);
+			else if (strcmp("PlayerCrashDamage ", name) == 0)
+				xd.PlayerCrashDamage = (float) atof(val);
 			else
 				fprintf(stderr, "Unknown config entry: %s\n", name);
 		}

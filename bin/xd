@@ -7,3 +7,5 @@ PlayerYVelocity = 4.6
 IdiotInterval = 30
 KamikadzeInterval = 60
 EnemyShootInterval = 20
+PlayerCrashDamage = 10
+EnemyCrashDamage = 100

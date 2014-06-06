@@ -90,7 +90,10 @@ void CheckCollistions(struct Player *p)
 	{
 		struct Enemy *e = iter->val;
 		if (Intersects(&e->Sprite, &p->Sprite))
-			p->HP--;
+		{
+			p->HP -= g_GLobalConfiguration.PlayerCrashDamage;
+			e->HP -= g_GLobalConfiguration.EnemyCrashDamage;
+		}
 
 		iter = iter->next;
 	}
