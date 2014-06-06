@@ -48,6 +48,10 @@ struct Configuration LoadConfigFile(const char *filename)
 				xd.EnemyCrashDamage = (float) atof(val);
 			else if (strcmp("PlayerCrashDamage ", name) == 0)
 				xd.PlayerCrashDamage = (float) atof(val);
+			else if (strcmp("KamikadzeScore ", name) == 0)
+				xd.KamikadzeScore = atoi(val);
+			else if (strcmp("IdiotScore ", name) == 0)
+				xd.IdiotScore = atoi(val);
 			else
 				fprintf(stderr, "Unknown config entry: %s\n", name);
 		}

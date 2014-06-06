@@ -48,6 +48,7 @@ void GameLogic(void)
 		SpawnEnemy(AI_IDIOT);
 
 	CheckEnemyBullets(&player);
+	CheckPlayerBullets(&player);
 	UpdatePlayer(&player);
 	UpdateEnemies(player.Sprite.Positon.x);
 	UpdateBackground();
@@ -77,7 +78,7 @@ void RenderGame(void)
 	DrawAS(&player.Sprite);
 	RenderEnemies();
 
-	RenderHUD(player.HP, player.MaxHP, 250);
+	RenderHUD(player.HP, player.MaxHP, player.Score);
 }
 void Render(void)
 {

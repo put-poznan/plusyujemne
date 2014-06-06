@@ -15,6 +15,7 @@ struct Player
 	int TimeToMissileShoot;
 	int HP;
 	int MaxHP;
+	int Score;
 };
 
 

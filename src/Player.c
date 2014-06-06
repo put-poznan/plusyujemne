@@ -19,6 +19,7 @@ struct Player CreatePlayer(void)
 	p.TimeToMissileShoot = 0;
 	p.HP = 1000;
 	p.MaxHP = 1000;
+	p.Score = 0;
 	return p;
 }
 
@@ -114,6 +115,38 @@ void CheckEnemyBullets(struct Player *p)
 		}
 
 		iter = iter->next;
+	}
+}
+
+void CheckPlayerBullets(struct Player *p)
+{
+	struct LinkedListNode *eiter = Enemies->head;
+	while(eiter != NULL)
+	{
+		struct Enemy *e = eiter->val;
+
+		struct LinkedListNode *biter = p->Bullets->head;
+		while(biter != NULL)
+		{
+			struct Bullet *b = biter->val;
+			if(Intersects(&b->as, &e->Sprite))
+			{
+				e->HP -= b->Damage;
+				b->IsAlive = 0;
+				if(e->HP <= 0)
+				{
+					p->Score += e->Ai == AI_IDIOT ?
+					g_GLobalConfiguration.IdiotScore :
+					g_GLobalConfiguration.KamikadzeScore;
+				}
+			}
+
+
+			biter = biter->next;
+		}
+
+
+		eiter = eiter->next;
 	}
 }
 

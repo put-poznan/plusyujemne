@@ -9,3 +9,5 @@ KamikadzeInterval = 60
 EnemyShootInterval = 20
 PlayerCrashDamage = 10
 EnemyCrashDamage = 100
+IdiotScore = 10
+KamikadzeScore = 25
