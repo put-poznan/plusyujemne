@@ -2,7 +2,7 @@
 #define _HUD_H_
 
 void InitHUD(void);
-void RenderHUD(int hp, int maxhp, int score);
+void RenderHUD(int hp, int maxhp, int score, int TTR);
 
 #endif
 

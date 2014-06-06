@@ -78,7 +78,8 @@ void RenderGame(void)
 	DrawAS(&player.Sprite);
 	RenderEnemies();
 
-	RenderHUD(player.HP, player.MaxHP, player.Score);
+	RenderHUD(player.HP, player.MaxHP, player.Score,
+		player.TimeToMissileShoot);
 }
 void Render(void)
 {
@@ -88,10 +89,8 @@ void Render(void)
 		al_draw_text(arial, al_map_rgb(255, 255, 255), 200, 200, 0, "#walesacontent");
 }
 
-int main(int argc, char ** argv)
+int main()
 {
-	argc;
-	argv;
 	ALLEGRO_DISPLAY *display = NULL;
 
 	init(&display);

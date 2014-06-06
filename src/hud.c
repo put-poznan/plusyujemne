@@ -19,7 +19,7 @@ void InitHUD(void)
 	font = al_create_builtin_font();
 }
 
-void RenderHUD(int hp, int maxhp, int score)
+void RenderHUD(int hp, int maxhp, int score, int TTR)
 {
 	al_draw_line(10, 10, 10 + maxhp * HP_BAR_RATIO, 10, al_map_rgb(127,0,0),
 		HP_BAR_HEIGHT);
@@ -30,6 +30,9 @@ void RenderHUD(int hp, int maxhp, int score)
 	sprintf(formatted, "Score: %d points.", score);
 	al_draw_text(font, al_map_rgb(255, 255, 255), 10, 20, 0,
 	 formatted);
+	sprintf(formatted, "Time To Rocket: %d", TTR);
+	al_draw_text(font, al_map_rgb(255,255,255), 10,40,0,
+		formatted);
 
 }
 
