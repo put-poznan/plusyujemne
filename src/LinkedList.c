@@ -1,6 +1,7 @@
 #include "LinkedList.h"
 #include <stdlib.h>
 #include <assert.h>
+#include <stdio.h>
 
 struct LinkedList *CreateLinkedList(void)
 {
@@ -36,6 +37,15 @@ void RemoveLL(struct LinkedList *list, item_t item)
 		return;
 	}
 
+	//really don't like it but its late and i have no better idea
+	if (list->head->val == item)
+	{
+		todel = list->head;
+		list->head = list->head->next;
+		free(todel);
+		return;
+	}
+
 	struct LinkedListNode *iter = list->head;
 	while(iter->next != NULL)
 	{
@@ -48,10 +58,12 @@ void RemoveLL(struct LinkedList *list, item_t item)
 		}
 		iter = iter->next;
 	}
-
+#ifndef NDEBUG
+	puts("NO LIST ITEM DELETED");
+#endif
 }
 
-void ReleaseLinkedList(struct LinkedList *list)
+void ReleaseLinkedList(struct LinkedList *list, int callFree)
 {
 	struct LinkedListNode *next;
 	assert(list != NULL);
@@ -61,7 +73,8 @@ void ReleaseLinkedList(struct LinkedList *list)
 
 
 	next = list->head->next;
-	free(list->head);
+	if(callFree)
+		free(list->head);
 	list->head = next;
-	ReleaseLinkedList(list);
+	ReleaseLinkedList(list, callFree);
 }

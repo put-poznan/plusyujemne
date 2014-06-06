@@ -6,7 +6,12 @@
 #include <allegro5\allegro_primitives.h>
 #include <allegro5\allegro_image.h>
 
-void init(ALLEGRO_DISPLAY **disp, int xres, int yres)
+#include "config.h"
+#include "ImageManager.h"
+#include "hud.h"
+#include "Enemy.h"
+
+void init(ALLEGRO_DISPLAY **disp)
 {
 	al_init();
 	al_install_keyboard();
@@ -14,6 +19,13 @@ void init(ALLEGRO_DISPLAY **disp, int xres, int yres)
 	al_init_primitives_addon();
 	al_init_image_addon();
 	al_install_mouse();
+	g_GLobalConfiguration = LoadConfigFile("xd");
+	*disp = al_create_display(g_GLobalConfiguration.XResolution,
+		g_GLobalConfiguration.YResolution);
 
-	*disp = al_create_display(xres, yres);
+
+	LoadImages();
+	InitHUD();
+	InitEnemy();
+
 }

@@ -1,7 +1,8 @@
 #ifndef _INIT_H_
 #define _INIT_H_
 #include <allegro5\allegro5.h>
+#include "config.h"
 
-void init(ALLEGRO_DISPLAY **disp, int xres, int yres);
+void init(ALLEGRO_DISPLAY **disp);
 
 #endif 
