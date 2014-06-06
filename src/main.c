@@ -86,7 +86,14 @@ void Render(void)
 	if(GameState == GS_PLAY)
 		RenderGame();
 	else
-		al_draw_text(arial, al_map_rgb(255, 255, 255), 200, 200, 0, "#walesacontent");
+	{
+		al_clear_to_color(al_map_rgb(0x25, 0x25, 0x25));
+		char buffer[128] = { 0 };
+		sprintf(buffer, "You have scored %d points.", player.Score);
+		struct Vector2 center = GetScreenCenter();
+		al_draw_text(arial, al_map_rgb(255, 255, 255), center.x, center.y - 10, ALLEGRO_ALIGN_CENTER, "GAME OVER");
+		al_draw_text(arial, al_map_rgb(255, 255, 255), center.x, center.y + 10, ALLEGRO_ALIGN_CENTER, buffer);
+	}
 }
 
 int main()

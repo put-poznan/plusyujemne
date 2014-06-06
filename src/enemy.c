@@ -33,7 +33,7 @@ struct Enemy *CreateIdiotEnemy(void)
 	e->Ai = AI_IDIOT;
 	e->TimeToShoot = 0;
 	e->XVelocity = 0;
-	e->YVelocity = 5;
+	e->YVelocity = 8;
 	e->HP = 100;
 
 	return e;
@@ -46,8 +46,8 @@ struct Enemy *CreateKamikadzeEnemy(void)
 	e->ShootInterval = g_GLobalConfiguration.EnemyShootInterval;
 	e->Ai = AI_KAMIKADZE;
 	e->TimeToShoot = 0;
-	e->XVelocity = 2;
-	e->YVelocity = 5;
+	e->XVelocity = 4;
+	e->YVelocity = 10;
 	e->HP = 50;
 
 	return e;

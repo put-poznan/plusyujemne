@@ -7,9 +7,9 @@ struct Bullet *CreateStandardBullet(struct Vector2 spawn)
 {
 	struct Bullet *b = malloc(sizeof(struct Bullet));
 	b->as = CreateAnimatedSprite(spawn, ImageMan.StandardBullet, 4, 1);
-	b->Damage = 10;
+	b->Damage = 20;
 	b->IsAlive = 1;
-	b->Velocity = 9;
+	b->Velocity = 10;
 
 	return b;
 }
@@ -41,7 +41,7 @@ struct Bullet *CreateEnemyKamikadzeMissile(struct Vector2 spawn)
 	b->as = CreateAnimatedSprite(spawn, ImageMan.KamikadzeMissile, 4, 10);
 	b->Damage = 5;
 	b->IsAlive = 1;
-	b->Velocity = -11;
+	b->Velocity = -17;
 
 	return b;
 }

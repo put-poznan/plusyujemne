@@ -52,6 +52,8 @@ struct Configuration LoadConfigFile(const char *filename)
 				xd.KamikadzeScore = atoi(val);
 			else if (strcmp("IdiotScore ", name) == 0)
 				xd.IdiotScore = atoi(val);
+			else if (strcmp("HP ", name) == 0)
+				xd.HP = atoi(val);
 			else
 				fprintf(stderr, "Unknown config entry: %s\n", name);
 		}

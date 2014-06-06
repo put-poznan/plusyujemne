@@ -11,6 +11,7 @@ struct Configuration
 	int EnemyShootInterval;
 	float EnemyCrashDamage, PlayerCrashDamage;
 	int KamikadzeScore, IdiotScore;
+	int HP;
 };
 
 extern struct Configuration g_GLobalConfiguration;
