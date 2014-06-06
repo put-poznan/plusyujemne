@@ -47,6 +47,7 @@ void GameLogic(void)
 	if (IsKeyPressed(ALLEGRO_KEY_LSHIFT))
 		SpawnEnemy(AI_IDIOT);
 
+	CheckEnemyBullets(&player);
 	UpdatePlayer(&player);
 	UpdateEnemies(player.Sprite.Positon.x);
 	UpdateBackground();

@@ -28,7 +28,7 @@ struct Bullet *CreateEnemyIdiotMissile(struct Vector2 spawn)
 {
 	struct Bullet *b = malloc(sizeof(struct Bullet));
 	b->as = CreateAnimatedSprite(spawn, ImageMan.IdiotMissile, 4, 10);
-	b->Damage = 100;
+	b->Damage = 1;
 	b->IsAlive = 1;
 	b->Velocity = -11;
 
@@ -39,7 +39,7 @@ struct Bullet *CreateEnemyKamikadzeMissile(struct Vector2 spawn)
 {
 	struct Bullet *b = malloc(sizeof(struct Bullet));
 	b->as = CreateAnimatedSprite(spawn, ImageMan.KamikadzeMissile, 4, 10);
-	b->Damage = 100;
+	b->Damage = 5;
 	b->IsAlive = 1;
 	b->Velocity = -11;
 

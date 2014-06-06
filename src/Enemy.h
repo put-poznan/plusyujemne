@@ -17,6 +17,7 @@ struct Enemy
 	int ShootInterval;
 	int TimeToShoot;
 	enum ENEMY_AI Ai;
+	int HP;
 };
 
 void InitEnemy(void);

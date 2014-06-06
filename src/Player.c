@@ -3,6 +3,7 @@
 #include "config.h"
 #include "Bullet.h"
 #include "Enemy.h"
+#include "LinkedList.h"
 
 struct Player CreatePlayer(void)
 {
@@ -16,8 +17,8 @@ struct Player CreatePlayer(void)
 	p.TimeToStandardShoot = 0;
 	p.MissileShootInterval = 50;
 	p.TimeToMissileShoot = 0;
-	p.HP = 67;
-	p.MaxHP = 100;
+	p.HP = 1000;
+	p.MaxHP = 1000;
 	return p;
 }
 
@@ -94,6 +95,23 @@ void CheckCollistions(struct Player *p)
 		iter = iter->next;
 	}
 
+}
+
+void CheckEnemyBullets(struct Player *p)
+{
+	struct LinkedListNode *iter = Bullets->head;
+	while (iter != NULL)
+	{
+		struct Bullet *b = iter->val;
+
+		if(Intersects(&b->as, &p->Sprite))
+		{
+			p->HP -= b->Damage;
+			b->IsAlive = 0;
+		}
+
+		iter = iter->next;
+	}
 }
 
 void UpdatePlayer(struct Player *p)

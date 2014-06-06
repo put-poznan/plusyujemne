@@ -28,6 +28,7 @@ void ShootStandard(struct Player *p);
 void ShootMissile(struct Player *p);
 void UpdatePlayer(struct Player *p);
 
+void CheckEnemyBullets(struct Player *p);
 
 
 #endif

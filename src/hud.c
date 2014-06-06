@@ -10,7 +10,7 @@
 #include "config.h"
 
 #define HP_BAR_HEIGHT 7
-#define HP_BAR_RATIO 2.5f
+#define HP_BAR_RATIO 1/2.
 
 static ALLEGRO_FONT *font;
 

@@ -34,6 +34,7 @@ struct Enemy *CreateIdiotEnemy(void)
 	e->TimeToShoot = 0;
 	e->XVelocity = 0;
 	e->YVelocity = 5;
+	e->HP = 100;
 
 	return e;
 }
@@ -47,6 +48,7 @@ struct Enemy *CreateKamikadzeEnemy(void)
 	e->TimeToShoot = 0;
 	e->XVelocity = 2;
 	e->YVelocity = 5;
+	e->HP = 50;
 
 	return e;
 }
@@ -97,7 +99,8 @@ void UpdateEnemies(int playerXPos)
 	{
 		struct Enemy*e = iter->val;
 
-		if (e->Sprite.Positon.y > g_GLobalConfiguration.YResolution)
+		if (e->Sprite.Positon.y > g_GLobalConfiguration.YResolution
+			|| e->HP <= 0)
 			PrependLL(toDelete, iter->val);
 		UpdateAS(&e->Sprite, 1);
 
