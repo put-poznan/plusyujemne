@@ -8,6 +8,7 @@
 #include <allegro5\allegro_image.h>
 
 #include "config.h"
+#include "util.h"
 
 #define HP_BAR_HEIGHT 7
 #define HP_BAR_RATIO 3.
@@ -36,3 +37,12 @@ void RenderHUD(int hp, int maxhp, int score, int TTR)
 
 }
 
+void RenderGameOver(int score)
+{
+	al_clear_to_color(al_map_rgb(0x25, 0x25, 0x25));
+	char buffer[128] = { 0 };
+	sprintf(buffer, "You have scored %d points.", score);
+	struct Vector2 center = GetScreenCenter();
+	al_draw_text(font, al_map_rgb(255, 255, 255), center.x, center.y - 10, ALLEGRO_ALIGN_CENTER, "GAME OVER");
+	al_draw_text(font, al_map_rgb(255, 255, 255), center.x, center.y + 10, ALLEGRO_ALIGN_CENTER, buffer);
+}

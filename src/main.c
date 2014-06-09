@@ -19,8 +19,6 @@
 #include "hud.h"
 #include "Enemy.h"
 
-struct GameEntity bolek;
-ALLEGRO_FONT *arial;
 struct Player player;
 
 enum GAME_STATE {GS_PLAY, GS_END};
@@ -87,12 +85,7 @@ void Render(void)
 		RenderGame();
 	else
 	{
-		al_clear_to_color(al_map_rgb(0x25, 0x25, 0x25));
-		char buffer[128] = { 0 };
-		sprintf(buffer, "You have scored %d points.", player.Score);
-		struct Vector2 center = GetScreenCenter();
-		al_draw_text(arial, al_map_rgb(255, 255, 255), center.x, center.y - 10, ALLEGRO_ALIGN_CENTER, "GAME OVER");
-		al_draw_text(arial, al_map_rgb(255, 255, 255), center.x, center.y + 10, ALLEGRO_ALIGN_CENTER, buffer);
+		RenderGameOver(player.Score);
 	}
 }
 
@@ -102,16 +95,12 @@ int main()
 
 	init(&display);
 
-	arial = al_create_builtin_font();
-	ALLEGRO_BITMAP *bolekbmp = LoadImageFile("gfx/bolek.png");
-
+	
 	struct Vector2 zero;
 	zero.x = zero.y = 0;
 	player = CreatePlayer();
 
-	bolek.bitmap = bolekbmp;
-	bolek.Pos.x = 100;
-	bolek.Pos.y = 100;
+	
 
 
 

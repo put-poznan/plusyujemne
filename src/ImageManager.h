@@ -17,8 +17,10 @@ struct ImageManager
 	
 };
 
+/* globalny obiekt trzymający bitmapy */
 extern struct ImageManager ImageMan;
 
+/* załaduj grafiki */
 void LoadImages(void);
 
 #endif

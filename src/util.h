@@ -13,19 +13,12 @@ struct Vector2
 	float y;
 };
 
-struct GameEntity
-{
-	struct Vector2 Pos;
-	struct Vector2 Size;
-	ALLEGRO_BITMAP *bitmap;
-};
-
-void RenderGE(const struct GameEntity entity);
-
+//załaduj bitmapę
 ALLEGRO_BITMAP *LoadImageFile(const char *filename);
+//załaduj bitmapę i przeskaluj ją do rozmiaru
 ALLEGRO_BITMAP *load_bitmap_at_size(const char *filename, int w, int h);
 
-
+//pobierz środek ekranu
 struct Vector2 GetScreenCenter(void);
 
 #endif

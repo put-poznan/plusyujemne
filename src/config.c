@@ -30,8 +30,6 @@ struct Configuration LoadConfigFile(const char *filename)
 				xd.XResolution = atoi(val);
 			else if (strcmp("YResolution ", name)==0)
 				xd.YResolution = atoi(val);
-			else if (strcmp("ShipSpeed ", name)==0)
-				xd.ShipSpeed = (float)atof(val);
 			else if (strcmp("RocketSpeed ", name) == 0)
 				xd.RocketSpeed = (float)atof(val);
 			else if (strcmp("PlayerXVelocity ", name) == 0)
